@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Practice Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">{ C }</span>
+                <span class="logo-text">Programming Practice</span>
+            </div>
+            <div class="nav-controls">
+                <input type="text" id="searchBox" placeholder="Search topics..." class="search-box">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <h3>Topics</h3>
+            <ul class="topic-list">
+                <li><a href="#pointers" data-topic="pointers">Pointers & References</a></li>
+                <li><a href="#functions" data-topic="functions">Function Pointers</a></li>
+                <li><a href="#preprocessor" data-topic="preprocessor">Preprocessor Directives</a></li>
+                <li><a href="#memory" data-topic="memory">Dynamic Memory</a></li>
+                <li><a href="#files" data-topic="files">File Handling</a></li>
+                <li><a href="#arrays" data-topic="arrays">Arrays & Strings</a></li>
+                <li><a href="#structures" data-topic="structures">Structures & Unions</a></li>
+                <li><a href="#recursion" data-topic="recursion">Recursion</a></li>
+                <li><a href="#storage" data-topic="storage">Storage Classes</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="hero">
+            <h1>Master C Programming 🚀</h1>
+            <p>Your complete guide to understanding and revising C programming concepts with 67 solved problems</p>
+        </header>
+
+        <!-- Pointers & References Section -->
+        <section id="pointers" class="topic-section" data-topic="pointers">
+            <h2 class="section-title">📍 Pointers & References</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#1</span>
+                    <h3>Call by Reference - Swap Two Numbers</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Concept:</strong> In call by reference, we pass the address (memory location) of the variables to the function. Any changes made inside the function directly affect the original variables.</p>
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int main() {
+    int a = 10, b = 20;
+    swap(&a, &b);
+    printf("Swapped: a = %d, b = %d\n", a, b);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#2</span>
+                    <h3>Call by Value vs Call by Reference</h3>
+                </div>
+                <div class="problem-content">
+                    <div class="comparison">
+                        <div class="comp-item">
+                            <h4>Call by Value</h4>
+                            <p>Passes a copy of the data. Changes inside function do not affect the original.</p>
+                        </div>
+                        <div class="comp-item">
+                            <h4>Call by Reference</h4>
+                            <p>Passes the address. Changes do affect the original.</p>
+                        </div>
+                    </div>
+                    <pre><code class="language-c">void modify(int val, int *ref) {
+    val = 50;      // Changes copy only
+    *ref = 50;     // Changes actual variable
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#3</span>
+                    <h3>Pointer-to-Pointer (Double Pointer)</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int var = 100;
+    int *ptr = &var;
+    int **pptr = &ptr;
+    
+    printf("Value of var: %d\n", var);
+    printf("Address of var: %p\n", &var);
+    printf("Address stored in ptr: %p\n", ptr);
+    printf("Address of ptr: %p\n", &ptr);
+    printf("Address stored in pptr: %p\n", pptr);
+    printf("Value via pptr: %d\n", **pptr);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#17</span>
+                    <h3>Chain of Pointers (3 Levels)</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10;
+    int *p1 = &a;
+    int **p2 = &p1;
+    int ***p3 = &p2;
+    
+    printf("Value: %d\n", ***p3);
+    printf("Addr a: %p, Addr p1: %p, Addr p2: %p\n", &a, &p1, &p2);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#52</span>
+                    <h3>Sum of Array Elements Using Pointers</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5}, sum = 0;
+    int *p = arr;
+    
+    for(int i=0; i&lt;5; i++) {
+        sum += *p;
+        p++;
+    }
+    printf("Sum: %d", sum);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#53</span>
+                    <h3>Array of Pointers</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Concept:</strong> An array where each element is a pointer (address).</p>
+                    <pre><code class="language-c">int *ptr[5]; // stores 5 integer addresses</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#67</span>
+                    <h3>Largest Element Using Pointers</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[] = {10, 50, 20}, max;
+    int *p = arr;
+    max = *p;
+    
+    for(int i=0; i&lt;3; i++) {
+        if(*(p+i) > max) max = *(p+i);
+    }
+    printf("Max: %d", max);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Function Pointers Section -->
+        <section id="functions" class="topic-section" data-topic="functions">
+            <h2 class="section-title">🔗 Function Pointers</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#4</span>
+                    <h3>Function Pointer for Subtraction</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int subtract(int a, int b) { return a - b; }
+
+int main() {
+    int (*func_ptr)(int, int) = subtract; // Pointer to function
+    int result = func_ptr(10, 4);
+    printf("Result: %d\n", result);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#5</span>
+                    <h3>Function Pointer for Multiplication</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Explanation:</strong> A function pointer stores the address of a function, allowing you to call that function dynamically.</p>
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int multiply(int a, int b) { return a * b; }
+
+int main() {
+    int (*ptr)(int, int) = multiply;
+    printf("Product: %d\n", ptr(5, 6));
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#18</span>
+                    <h3>Function Pointer for Addition</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int add(int a, int b) { return a + b; }
+
+int main() {
+    int (*sum)(int, int) = add;
+    printf("Sum: %d", sum(10, 20));
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#6</span>
+                    <h3>Command-Line Arguments</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[]) {
+    printf("Arguments passed:\n");
+    for (int i = 0; i &lt; argc; i++) {
+        printf("Arg %d: %s\n", i, argv[i]);
+    }
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#19</span>
+                    <h3>Purpose of argc and argv</h3>
+                </div>
+                <div class="problem-content">
+                    <ul class="info-list">
+                        <li><strong>argc (Argument Count):</strong> Number of command-line arguments</li>
+                        <li><strong>argv (Argument Vector):</strong> Array of strings containing the arguments</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preprocessor Directives Section -->
+        <section id="preprocessor" class="topic-section" data-topic="preprocessor">
+            <h2 class="section-title">⚙️ Preprocessor Directives</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#7</span>
+                    <h3>Preprocessor Directives & Macro for Square</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Explanation:</strong> Directives starting with # are processed before compilation. They handle file inclusion and text substitution.</p>
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#define SQUARE(x) ((x) * (x))
+
+int main() {
+    printf("Square of 5: %d", SQUARE(5));
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#8</span>
+                    <h3>Short Note on #include, #define, and #ifdef</h3>
+                </div>
+                <div class="problem-content">
+                    <ul class="info-list">
+                        <li><strong>#include:</strong> Pastes contents of another file (e.g., &lt;stdio.h&gt;)</li>
+                        <li><strong>#define:</strong> Creates constants or macros (e.g., #define PI 3.14)</li>
+                        <li><strong>#ifdef:</strong> Conditional compilation; compiles code only if a macro is defined</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#20</span>
+                    <h3>Preprocessor Definition & Macro Substitution</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Definition:</strong> A system that processes code before the compiler sees it.</p>
+                    <pre><code class="language-c">#define MSG "Hello World"
+#include &lt;stdio.h&gt;
+
+int main() { 
+    printf("%s", MSG); 
+    return 0; 
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Memory Section -->
+        <section id="memory" class="topic-section" data-topic="memory">
+            <h2 class="section-title">💾 Dynamic Memory Management</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#9</span>
+                    <h3>Dynamic Array Allocation & Realloc</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    int *arr = (int*)malloc(2 * sizeof(int)); // Size 2
+    arr[0] = 1; arr[1] = 2;
+    
+    arr = (int*)realloc(arr, 3 * sizeof(int)); // Resize to 3
+    arr[2] = 3;
+    
+    printf("Values: %d %d %d\n", arr[0], arr[1], arr[2]);
+    free(arr);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#10</span>
+                    <h3>Explain calloc() and realloc()</h3>
+                </div>
+                <div class="problem-content">
+                    <ul class="info-list">
+                        <li><strong>calloc(n, size):</strong> Allocates memory for n items of size bytes and initializes them to zero</li>
+                        <li><strong>realloc(ptr, new_size):</strong> Changes the size of previously allocated memory pointed to by ptr</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#11</span>
+                    <h3>Store 10 Strings Using Dynamic Memory</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char *strings[10]; 
+    
+    for(int i=0; i&lt;10; i++) {
+        strings[i] = (char*)malloc(20 * sizeof(char)); // Alloc memory
+        sprintf(strings[i], "String %d", i+1);
+    }
+    
+    for(int i=0; i&lt;10; i++) 
+        printf("%s\n", strings[i]);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#21</span>
+                    <h3>Dynamic Memory & Store 5 Student Names</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Definition:</strong> Allocating memory manually during runtime using heap.</p>
+                    <p class="concept"><strong>Realloc Syntax:</strong> ptr = realloc(ptr, new_size);</p>
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    char *students[5];
+    
+    for(int i=0; i&lt;5; i++) {
+        students[i] = malloc(50);
+        printf("Enter name %d: ", i+1);
+        scanf("%s", students[i]);
+    }
+    
+    for(int i=0; i&lt;5; i++) 
+        printf("%s\n", students[i]);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#28</span>
+                    <h3>Expand & Shrink Array Using Realloc</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    int *arr = malloc(3 * sizeof(int)); // Size 3
+    
+    // Expand
+    arr = realloc(arr, 6 * sizeof(int)); // Size 6
+    
+    // Shrink
+    arr = realloc(arr, 2 * sizeof(int)); // Size 2
+    
+    free(arr);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#51</span>
+                    <h3>Dynamic Allocation: Accept, Display, Free</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    int *p = (int*)malloc(5 * sizeof(int));
+    
+    for(int i=0; i&lt;5; i++) 
+        p[i] = i+10; // Dummy input
+    
+    for(int i=0; i&lt;5; i++) 
+        printf("%d ", p[i]);
+    
+    free(p);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#66</span>
+                    <h3>Dynamic Allocation for N Integers & Sum</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    int n, sum=0;
+    scanf("%d", &n);
+    
+    int *arr = (int*)malloc(n * sizeof(int));
+    
+    for(int i=0; i&lt;n; i++) {
+        arr[i] = i; // Input
+        sum += arr[i];
+    }
+    
+    printf("Sum: %d", sum);
+    free(arr);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Handling Section -->
+        <section id="files" class="topic-section" data-topic="files">
+            <h2 class="section-title">📁 File Handling</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#12</span>
+                    <h3>Copy File Contents</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *source = fopen("src.txt", "r");
+    FILE *dest = fopen("dest.txt", "w");
+    char c;
+    
+    if (source && dest) {
+        while ((c = fgetc(source)) != EOF) 
+            fputc(c, dest);
+    }
+    
+    fclose(source); 
+    fclose(dest);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#13</span>
+                    <h3>File Modes Explained</h3>
+                </div>
+                <div class="problem-content">
+                    <ul class="info-list">
+                        <li><strong>"r":</strong> Read only</li>
+                        <li><strong>"w":</strong> Write only (overwrites file)</li>
+                        <li><strong>"a":</strong> Append (adds to end)</li>
+                        <li><strong>"r+":</strong> Read and Write (file must exist)</li>
+                        <li><strong>"w+":</strong> Read and Write (overwrites file)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#14</span>
+                    <h3>Read File Using fgetc()</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *fp = fopen("data.txt", "r");
+    char c;
+    
+    if (fp) {
+        while ((c = fgetc(fp)) != EOF) 
+            printf("%c", c);
+        fclose(fp);
+    }
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#15</span>
+                    <h3>Write String Using fputc()</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *fp = fopen("output.txt", "w");
+    char str[] = "Hello";
+    
+    for(int i=0; str[i]!='\0'; i++) 
+        fputc(str[i], fp);
+    
+    fclose(fp);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#22</span>
+                    <h3>Append Data to File</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *fp = fopen("log.txt", "a");
+    fprintf(fp, "New Entry\n");
+    fclose(fp);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#24</span>
+                    <h3>fgetc & fputc Syntax</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">int fgetc(FILE *stream);  // Reads one char
+int fputc(int char, FILE *stream);  // Writes one char</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#26</span>
+                    <h3>fseek & ftell Syntax</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>fseek:</strong> Moves the file cursor to a specific location (beginning, current, or end).</p>
+                    <pre><code class="language-c">int fseek(FILE *stream, long offset, int whence);
+long ftell(FILE *stream);</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#27</span>
+                    <h3>fgets, fputs, fopen Explained</h3>
+                </div>
+                <div class="problem-content">
+                    <ul class="info-list">
+                        <li><strong>fopen:</strong> Opens a file. FILE *fp = fopen("name", "mode");</li>
+                        <li><strong>fgets:</strong> Reads a line. fgets(buffer, size, fp);</li>
+                        <li><strong>fputs:</strong> Writes a line. fputs("text", fp);</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#29</span>
+                    <h3>Get File Size Using ftell</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *fp = fopen("file.txt", "r");
+    fseek(fp, 0, SEEK_END);
+    printf("File size: %ld bytes", ftell(fp));
+    fclose(fp);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#30</span>
+                    <h3>SEEK Constants Explained</h3>
+                </div>
+                <div class="problem-content">
+                    <ul class="info-list">
+                        <li><strong>SEEK_SET:</strong> Start of file</li>
+                        <li><strong>SEEK_CUR:</strong> Current cursor position</li>
+                        <li><strong>SEEK_END:</strong> End of file</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#31</span>
+                    <h3>Read & Write Multiple Lines</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    char buf[100];
+    FILE *fp = fopen("story.txt", "r");
+    
+    while(fgets(buf, 100, fp)) 
+        printf("%s", buf); // Read
+    fclose(fp);
+    
+    fp = fopen("out.txt", "w");
+    fputs("Line 1\n", fp); // Write
+    fputs("Line 2\n", fp);
+    fclose(fp);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arrays & Strings Section -->
+        <section id="arrays" class="topic-section" data-topic="arrays">
+            <h2 class="section-title">📊 Arrays & Strings</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#32</span>
+                    <h3>Largest Element in 2D Array</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[2][2] = {{5, 20}, {15, 8}};
+    int max = arr[0][0];
+    
+    for(int i=0; i&lt;2; i++)
+        for(int j=0; j&lt;2; j++)
+            if(arr[i][j] > max) max = arr[i][j];
+    
+    printf("Largest: %d", max);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#33</span>
+                    <h3>Print Array Using Function</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void printarr(int A[], int len) {
+    for(int i=0; i&lt;len; i++) 
+        printf("%d ", A[i]);
+}
+
+int main() {
+    int A[10];
+    for(int i=0; i&lt;10; i++) A[i] = i; // Dummy input
+    printarr(A, 10);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#34</span>
+                    <h3>Sort Array in Ascending Order</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int a[] = {5, 3, 8, 1, 2}, temp;
+    
+    for(int i=0; i&lt;5; i++) {
+        for(int j=i+1; j&lt;5; j++) {
+            if(a[i] > a[j]) { 
+                temp=a[i]; a[i]=a[j]; a[j]=temp; 
+            }
+        }
+    }
+    
+    for(int i=0; i&lt;5; i++) 
+        printf("%d ", a[i]);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#35</span>
+                    <h3>String Copy Without Library</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    char s1[] = "Hello", s2[10];
+    int i = 0;
+    
+    while(s1[i] != '\0') { 
+        s2[i] = s1[i]; 
+        i++; 
+    }
+    s2[i] = '\0';
+    
+    printf("Copied: %s", s2);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#37</span>
+                    <h3>String Comparison Without Library</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    char s1[] = "abc", s2[] = "abc";
+    int i = 0, flag = 0;
+    
+    while(s1[i]!='\0' || s2[i]!='\0') {
+        if(s1[i] != s2[i]) { 
+            flag = 1; 
+            break; 
+        }
+        i++;
+    }
+    
+    if(flag == 0) printf("Equal"); 
+    else printf("Not Equal");
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#40</span>
+                    <h3>Reverse String Without Library</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[] = "Code";
+    int len = 4; // Length of "Code"
+    
+    for(int i=len-1; i>=0; i--) 
+        printf("%c", str[i]);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#41</span>
+                    <h3>Sum of Diagonal Elements</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int m[3][3] = {{1,2,3},{4,5,6},{7,8,9}}, sum=0;
+    
+    for(int i=0; i&lt;3; i++) 
+        sum += m[i][i];
+    
+    printf("Sum: %d", sum);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#42</span>
+                    <h3>Array of Strings Concept</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Concept:</strong> It is a 2D character array or an array of character pointers.</p>
+                    <pre><code class="language-c">char names[3][10] = {"Tom", "Dick", "Harry"};</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#43</span>
+                    <h3>2D Array Syntax</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Syntax:</strong> type name[rows][cols];</p>
+                    <pre><code class="language-c">int m[2][2];
+// Input loop...
+// Print loop using printf("%d ", m[i][j]);</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#54</span>
+                    <h3>Smallest Element in 2D Array</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int m[2][2] = {{5, 2}, {8, 1}}, min = m[0][0];
+    
+    for(int i=0; i&lt;2; i++)
+        for(int j=0; j&lt;2; j++)
+            if(m[i][j] < min) min = m[i][j];
+    
+    printf("Min: %d", min);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#55</span>
+                    <h3>Print Even Numbers from Array</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void printEven(int arr[], int n) {
+    for(int i=0; i&lt;n; i++) 
+        if(arr[i]%2 == 0) 
+            printf("%d ", arr[i]);
+}
+
+int main() {
+    int arr[] = {1,2,3,4,5,6,7,8,9,10};
+    printEven(arr, 10);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#56</span>
+                    <h3>Sort Array in Descending Order</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[] = {1, 5, 3}, temp;
+    
+    for(int i=0; i&lt;3; i++)
+        for(int j=i+1; j&lt;3; j++)
+            if(arr[i] < arr[j]) { 
+                temp=arr[i]; arr[i]=arr[j]; arr[j]=temp; 
+            }
+    
+    // Loop to print arr...
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#57</span>
+                    <h3>String Concatenation Without Library</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    char s1[20] = "Hi ", s2[] = "There";
+    int i=0, j=0;
+    
+    while(s1[i] != '\0') i++; // Move to end of s1
+    while(s2[j] != '\0') { 
+        s1[i] = s2[j]; 
+        i++; j++; 
+    }
+    s1[i] = '\0';
+    
+    printf("%s", s1);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#61</span>
+                    <h3>Palindrome String Check</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char s[] = "madam";
+    int i=0, j=4, flag=0; // j = length-1
+    
+    while(i&lt;j) {
+        if(s[i] != s[j]) { 
+            flag=1; 
+            break; 
+        }
+        i++; j--;
+    }
+    
+    if(flag==0) printf("Palindrome");
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#62</span>
+                    <h3>Sum of Non-Diagonal Elements</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int m[3][3] = {{1,1,1},{1,1,1},{1,1,1}}, sum=0;
+    
+    for(int i=0; i&lt;3; i++)
+        for(int j=0; j&lt;3; j++)
+            if(i != j) sum += m[i][j]; // Non-diagonal logic
+    
+    printf("Sum: %d", sum);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structures & Unions Section -->
+        <section id="structures" class="topic-section" data-topic="structures">
+            <h2 class="section-title">🏗️ Structures & Unions</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#36</span>
+                    <h3>Employee Details Using Structure</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Emp { 
+    char name[20]; 
+    int id; 
+};
+
+int main() {
+    struct Emp e[5];
+    
+    for(int i=0; i&lt;5; i++) {
+        scanf("%s %d", e[i].name, &e[i].id); 
+    }
+    
+    // Display loop here...
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#44</span>
+                    <h3>Nested Structure</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Concept:</strong> A structure member can be another structure.</p>
+                    <pre><code class="language-c">struct Date { 
+    int d, m, y; 
+};
+
+struct Student { 
+    char name[20]; 
+    struct Date dob; // Nested
+};</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#45</span>
+                    <h3>Differences: Structure vs Union</h3>
+                </div>
+                <div class="problem-content">
+                    <div class="comparison">
+                        <div class="comp-item">
+                            <h4>Structure</h4>
+                            <p>Allocates memory for all members. Total size = sum of members.</p>
+                        </div>
+                        <div class="comp-item">
+                            <h4>Union</h4>
+                            <p>Allocates memory for the largest member only. Shared memory.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#46</span>
+                    <h3>Union with 4 Members</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+union Data { 
+    int i; 
+    float f; 
+    char str[20]; 
+    double d; 
+};
+
+int main() {
+    union Data data;
+    data.i = 10;
+    printf("Int: %d", data.i); // Only one active at a time
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#47</span>
+                    <h3>Structure: Book Details</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Book { 
+    int id; 
+    char title[20]; 
+    char author[20]; 
+    float price; 
+};
+
+int main() {
+    struct Book b;
+    scanf("%d %s %s %f", &b.id, b.title, b.author, &b.price);
+    printf("%d %s %s %.2f", b.id, b.title, b.author, b.price);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#48</span>
+                    <h3>Union: Student Details</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+union Student { 
+    int id; 
+    char name[20]; 
+    int age; 
+    float per; 
+};
+
+int main() {
+    union Student s;
+    s.id = 1; 
+    printf("ID: %d\n", s.id); // Usage one by one
+    s.per = 90.5; 
+    printf("Per: %.2f", s.per);
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#49</span>
+                    <h3>Define Union & Access Members</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Definition:</strong> A user-defined data type where all members share the same memory location.</p>
+                    <p class="concept"><strong>Access:</strong> Using dot operator . (e.g., u.member)</p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#50</span>
+                    <h3>N Employee Details - Array of Structures</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Emp { 
+    int id; 
+    char name[10]; 
+};
+
+int main() {
+    struct Emp e[10];
+    int n = 2; // For example
+    
+    for(int i=0; i&lt;n; i++) 
+        scanf("%d %s", &e[i].id, e[i].name);
+    
+    for(int i=0; i&lt;n; i++) 
+        printf("%d %s\n", e[i].id, e[i].name);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#58</span>
+                    <h3>Display Employees with Salary > Value</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Emp { 
+    char name[10]; 
+    float sal; 
+};
+
+int main() {
+    struct Emp e[5] = {{"A", 5000}, {"B", 2000}}; // etc
+    float val = 3000;
+    
+    for(int i=0; i&lt;5; i++)
+        if(e[i].sal > val) 
+            printf("%s\n", e[i].name);
+    
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#63</span>
+                    <h3>Nested Structure Access</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Access:</strong> student.dob.year</p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#64</span>
+                    <h3>Memory Allocation: Structure vs Union</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">// Structure
+struct A { int i; char c; }; 
+// Size = sizeof(int) + sizeof(char) (approx 5-8 bytes with padding)
+
+// Union
+union B { int i; char c; }; 
+// Size = sizeof(int) (4 bytes, largest member)</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#65</span>
+                    <h3>Book Details - Structure Array for 3 Books</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+struct Book { 
+    char title[20]; 
+};
+
+int main() {
+    struct Book b[3];
+    
+    for(int i=0; i&lt;3; i++) {
+        // Scanf logic here...
+    }
+    
+    // Printf logic here...
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursion Section -->
+        <section id="recursion" class="topic-section" data-topic="recursion">
+            <h2 class="section-title">🔄 Recursion</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#38</span>
+                    <h3>Fibonacci First N Terms Using Recursion</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int fib(int n) {
+    if (n <= 1) return n;
+    return fib(n-1) + fib(n-2);
+}
+
+int main() {
+    int n = 5; 
+    for(int i=0; i&lt;n; i++) 
+        printf("%d ", fib(i));
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#59</span>
+                    <h3>Nth Fibonacci Number Using Recursion</h3>
+                </div>
+                <div class="problem-content">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int fib(int n) {
+    if(n <= 1) return n;
+    return fib(n-1) + fib(n-2);
+}
+
+int main() {
+    printf("5th Fib: %d", fib(5)); // Note: 0-indexed usually
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Storage Classes Section -->
+        <section id="storage" class="topic-section" data-topic="storage">
+            <h2 class="section-title">💼 Storage Classes</h2>
+            
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#39</span>
+                    <h3>List Storage Classes & Explain Static</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>List:</strong> auto, extern, static, register</p>
+                    <p class="concept"><strong>Static:</strong> Variable retains its value between function calls. Initialized only once.</p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-header">
+                    <span class="problem-number">#60</span>
+                    <h3>Static Storage Class Example</h3>
+                </div>
+                <div class="problem-content">
+                    <p class="concept"><strong>Note:</strong> Preserves value even after function scope ends.</p>
+                    <pre><code class="language-c">void count() { 
+    static int c=0; 
+    c++; 
+    printf("%d", c); 
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Made with 💙 for C Programming Enthusiasts | 67 Problems Solved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
